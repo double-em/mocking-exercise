@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LandonHotel.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,10 @@ namespace LandonHotel
             {
                 options.EnableEndpointRouting = false;
             });
+            
+            services.AddTransient<IRoomsRepository, RoomsRepository>();
+            services.AddTransient<IBookingsRepository, BookingsRepository>();
+
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IBookingService, BookingService>();
         }
