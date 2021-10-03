@@ -1,16 +1,23 @@
 ﻿using LandonHotel.Data;
+using LandonHotel.Repositories;
 
 namespace LandonHotel.Services
 {
     public class BookingService : IBookingService
     {
-        public BookingService()
+        private IRoomsRepository _roomsRepository;
+        public BookingService(IRoomsRepository roomsRepository)
         {
+            _roomsRepository = roomsRepository;
         }
 
-        public int CalculateBookingCost(int roomId, Booking booking)
+        public int CalculateBookingCost(Booking booking)
         {
-            return 0;
+            var roomRate = _roomsRepository.GetRoom(booking.RoomId).Rate;
+            
+            if (booking.IsSmoking) roomRate *= 2;
+            
+            return roomRate ;
         }
     }
 }

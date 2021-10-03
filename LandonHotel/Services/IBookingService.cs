@@ -4,6 +4,6 @@ namespace LandonHotel.Services
 {
     public interface IBookingService
     {
-        int CalculateBookingCost(int roomId, Booking booking);
+        int CalculateBookingCost(Booking booking);
     }
 }
